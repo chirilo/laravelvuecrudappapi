@@ -34,6 +34,9 @@ const submit = () => {
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             	<h2 class="font-semibold text-xl text-gray-800 leading-tight">Edit Project</h2>
         	</div>
+        	<div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+				<h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight"><a :href="route('projects.index')" style="float: right;"> <- Cancel Edit</a> </h2>
+			</div>
     	</div>
 
         <div class="py-12">

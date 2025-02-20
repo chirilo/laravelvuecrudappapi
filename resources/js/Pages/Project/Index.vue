@@ -37,7 +37,7 @@ const deleteTrade = (id) => {
 				<h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight"><a :href="route('projects.index')">Projects</a> <PrimaryButton :href="route('projects.index', {filter:'only'})" class="max-w-xl ml-2" >View Trashed</PrimaryButton></h2>
 			</div>
 			<div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-				<h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight"><a :href="route('projects.create')">Add Project</a> </h2>
+				<h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight"><a :href="route('projects.create')" style="float: right;">Add Project</a> </h2>
 			</div>
 		</div>
 		<div class="py-12">
@@ -79,8 +79,8 @@ const deleteTrade = (id) => {
 					   </span>
 					 </td>
 					 <td class="border-t" >
-					 	<PrimaryButton v-if="entry.deleted_at == null" :href="route('projects.show', {'id': entry.id})" class="max-w-xl ml-2" >VIEW</PrimaryButton>
-					   	<PrimaryButton v-if="entry.deleted_at == null" :href="route('projects.edit', {'id': entry.id})" class="max-w-xl ml-2" >EDIT</PrimaryButton>
+					 	<a v-if="entry.deleted_at == null" :href="route('projects.show', {'id': entry.id})" class="max-w-xl ml-2" >VIEW</a>
+					   	<a v-if="entry.deleted_at == null" :href="route('projects.edit', {'id': entry.id})" class="max-w-xl ml-2" >EDIT</a>
 					   	<DangerButton
 						class="ml-3"
 						@click="deleteTrade(entry.id)" v-if="entry.deleted_at == null"
