@@ -4,9 +4,14 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-//import TextArea from '@/Components/TextArea.vue';
+import TextArea from '@/Components/TextArea.vue';
+import Dropdown from '@/Components/Dropdown.vue';
+import ExampleComponent from '@/Components/ExampleComponent.vue';
 import { Link, useForm, usePage } from '@inertiajs/vue3';
 
+
+import AppLayout from '@/Layouts/AppLayout.vue';
+import Welcome from '@/Components/Welcome.vue';
 
 const form = useForm({
     heading: '',
@@ -19,9 +24,24 @@ const submit = () => {
 };
 </script>
 <template>
-    <Head title="Create Blog" />
+	<AppLayout title="Dashboard">
+        <template #header>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                Projects
+            </h2>
+        </template>
 
-    <!-- <AuthenticatedLayout> -->
+        <div class="py-12" style="display: none;">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                    
+                </div>
+            </div>
+        </div>
+
+        <Head title="Create Blog" />
+
+    	<!-- <AuthenticatedLayout> -->
         <!-- <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">Create Blog</h2>
         </template> -->
@@ -38,6 +58,20 @@ const submit = () => {
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
                 <section>
                     <form @submit.prevent="submit" class="mt-6 space-y-6">
+                    	<div>
+                            <InputLabel for="category" value="Category" />
+                            <Dropdown 
+                            	v-model="form.category" 
+                            	:options="categories" 
+                            	optionLabel="name" 
+                            	placeholder="Select a City" 
+                            	class="w-full md:w-14rem" 
+                            />
+
+                        </div>
+                        <div>
+                        	<ExampleComponent />
+                        </div>
                         <div>
                             <InputLabel for="heading" value="Heading" />
 
@@ -69,7 +103,7 @@ const submit = () => {
                         <div>
                             <InputLabel for="description" value="Description" />
 
-                            <TextInput
+                            <TextArea
                                 id="description"
                                 type="text"
                                 class="mt-1 block w-full"
@@ -95,5 +129,6 @@ const submit = () => {
                 </section>
             </div>
         </div>
-    <!-- </AuthenticatedLayout> -->
+    	<!-- </AuthenticatedLayout> -->
+    </AppLayout>
 </template>

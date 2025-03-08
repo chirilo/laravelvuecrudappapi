@@ -8,6 +8,10 @@ import TextInput from '@/Components/TextInput.vue';
 import { Link, useForm, usePage } from '@inertiajs/vue3';
 
 
+import AppLayout from '@/Layouts/AppLayout.vue';
+import Welcome from '@/Components/Welcome.vue';
+
+
 const props = defineProps({
     project : Object
 });
@@ -24,81 +28,97 @@ const submit = () => {
 };
 </script>
 <template>
-    <Head title="Edit Blog" />
+    <AppLayout title="Dashboard">
+        <template #header>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                Projects
+            </h2>
+        </template>
 
-    <!-- <AuthenticatedLayout> -->
-        <!-- <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Edit Blog</h2>
-        </template> -->
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            	<h2 class="font-semibold text-xl text-gray-800 leading-tight">Edit Project</h2>
-        	</div>
-        	<div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-				<h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight"><a :href="route('projects.index')" style="float: right;"> <- Cancel Edit</a> </h2>
-			</div>
-    	</div>
-
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-                <section>
-                    <form @submit.prevent="submit" class="mt-6 space-y-6">
-                        <div>
-                            <InputLabel for="heading" value="Heading" />
-
-                            <TextInput
-                                id="heading"
-                                type="text"
-                                class="mt-1 block w-full"
-                                v-model="form.heading"
-                                required
-                                autofocus
-                            />
-
-                            <InputError class="mt-2" :message="form.errors.heading" />
-                        </div>
-
-                        <div>
-                            <InputLabel for="slug" value="Slug" />
-
-                            <TextInput
-                                id="slug"
-                                type="text"
-                                class="mt-1 block w-full"
-                                v-model="form.slug"
-                                required
-                            />
-
-                            <InputError class="mt-2" :message="form.errors.slug" />
-                        </div>
-                        <div>
-                            <InputLabel for="description" value="Description" />
-
-                            <TextInput
-                                id="description"
-                                type="text"
-                                class="mt-1 block w-full"
-                                v-model="form.description"
-                            />
-
-                            <InputError class="mt-2" :message="form.errors.email" />
-                        </div>
-
-                        <div class="flex items-center gap-4">
-                            <PrimaryButton :disabled="form.processing">Save</PrimaryButton>
-
-                            <Transition
-                                enter-active-class="transition ease-in-out"
-                                enter-from-class="opacity-0"
-                                leave-active-class="transition ease-in-out"
-                                leave-to-class="opacity-0"
-                            >
-                                <p v-if="form.recentlySuccessful" class="text-sm text-gray-600">Saved.</p>
-                            </Transition>
-                        </div>
-                    </form>
-                </section>
+        <div class="py-12" style="display: none;">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                    
+                </div>
             </div>
         </div>
-    <!-- </AuthenticatedLayout> -->
+
+        <Head title="Edit Blog" />
+
+        <!-- <AuthenticatedLayout> -->
+            <!-- <template #header>
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight">Edit Blog</h2>
+            </template> -->
+            <div class="py-12">
+                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+                	<h2 class="font-semibold text-xl text-gray-800 leading-tight">Edit Project</h2>
+            	</div>
+            	<div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+    				<h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight"><a :href="route('projects.index')" style="float: right;"> <- Cancel Edit</a> </h2>
+    			</div>
+        	</div>
+
+            <div class="py-12">
+                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+                    <section>
+                        <form @submit.prevent="submit" class="mt-6 space-y-6">
+                            <div>
+                                <InputLabel for="heading" value="Heading" />
+
+                                <TextInput
+                                    id="heading"
+                                    type="text"
+                                    class="mt-1 block w-full"
+                                    v-model="form.heading"
+                                    required
+                                    autofocus
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.heading" />
+                            </div>
+
+                            <div>
+                                <InputLabel for="slug" value="Slug" />
+
+                                <TextInput
+                                    id="slug"
+                                    type="text"
+                                    class="mt-1 block w-full"
+                                    v-model="form.slug"
+                                    required
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.slug" />
+                            </div>
+                            <div>
+                                <InputLabel for="description" value="Description" />
+
+                                <TextInput
+                                    id="description"
+                                    type="text"
+                                    class="mt-1 block w-full"
+                                    v-model="form.description"
+                                />
+
+                                <InputError class="mt-2" :message="form.errors.email" />
+                            </div>
+
+                            <div class="flex items-center gap-4">
+                                <PrimaryButton :disabled="form.processing">Save</PrimaryButton>
+
+                                <Transition
+                                    enter-active-class="transition ease-in-out"
+                                    enter-from-class="opacity-0"
+                                    leave-active-class="transition ease-in-out"
+                                    leave-to-class="opacity-0"
+                                >
+                                    <p v-if="form.recentlySuccessful" class="text-sm text-gray-600">Saved.</p>
+                                </Transition>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        <!-- </AuthenticatedLayout> -->
+    </AppLayout>
 </template>

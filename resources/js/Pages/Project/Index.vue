@@ -7,6 +7,9 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 //import Pagination from '@/Components/Pagination.vue';
 import TextInput from '@/Components/TextInput.vue';
 
+import AppLayout from '@/Layouts/AppLayout.vue';
+import Welcome from '@/Components/Welcome.vue';
+
 const props = defineProps({
     projects : Object,
     filters : Object,
@@ -27,7 +30,21 @@ const deleteTrade = (id) => {
 };
 </script>
 <template>
-	<Head title="Projects" />
+	<AppLayout title="Dashboard">
+        <template #header>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                Projects
+            </h2>
+        </template>
+
+        <div class="py-12" style="display: none;">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                    
+                </div>
+            </div>
+        </div>
+        <Head title="Projects" />
 	<!-- <AuthenticatedLayout> -->
 		<!-- <template #header>
 		<h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight"><a :href="route('projects.index')">Projects</a> <PrimaryButton :href="route('projects.index', {filter:'only'})" class="max-w-xl ml-2" >View Trashed</PrimaryButton></h2>
@@ -99,4 +116,6 @@ const deleteTrade = (id) => {
 			</div>
 		</div>
 	<!-- </AuthenticatedLayout> -->
+    </AppLayout>
+	
 </template>
